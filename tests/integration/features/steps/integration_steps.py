@@ -658,7 +658,7 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
                 and section["columnfamily"][: len(table_name)] == table_name
             ):
                 for objects in section["objects"]:
-                    nb_files{objects["path"]} = 0
+                    nb_files[objects["path"]] = 0
 
     if sb_files != len(nb_files):
         logging.error("{} Objects found on remote storage and {} files found on backups manifest".format(sb_files,len(nb_files)))
