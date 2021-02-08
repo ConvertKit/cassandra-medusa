@@ -637,6 +637,7 @@ def _i_cannot_see_the_backup_named_backupname_when_i_list_the_backups(
 
     assert found is False
 
+
 @then(r'I cannot see purged backup files for the "{table_name}" table in keyspace "{keyspace}')
 def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspacename(
     context, table_name, keyspace
@@ -661,8 +662,10 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
                     nb_files[objects["path"]] = 0
 
     if sb_files != len(nb_files):
-        logging.error("{} Objects found on remote storage and {} files found on backups manifest".format(sb_files,len(nb_files)))
+        logging.error("{} Objects found on remote storage and {} files found on backups manifest".format(
+            sb_files, len(nb_files)))
         assert sb_files == len(nb_files)
+
 
 @then('I can see the backup status for "{backup_name}" when I run the status command')
 def _i_can_see_backup_status_when_i_run_the_status_command(context, backup_name):
