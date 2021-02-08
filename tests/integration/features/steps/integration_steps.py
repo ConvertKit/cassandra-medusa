@@ -650,9 +650,10 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
 
     node_backups = storage.list_node_backups()
     # Parse its manifest
-    backups_manifest = json.loads(list(node_backups.manifest))
+    nb_list = json.loads(list(node_backups))
     nb_files = {}
-    for manifest in backups_manifest:
+    for nb in nb_list:
+        manifest = nb.manifest
         for section in manifest:
             if (
                 section["keyspace"] == keyspace
