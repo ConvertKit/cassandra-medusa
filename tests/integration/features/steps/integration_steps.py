@@ -663,7 +663,7 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
                     nb_files[objects["path"]] = 0
 
     logging.info("{} objects found on remote storage and {} objects found on backups manifest".format(
-            sb_files, len(nb_files)))
+        sb_files, len(nb_files)))
     if sb_files != len(nb_files):
         logging.error("{} objects found on remote storage and {} objects found on backups manifest".format(
             sb_files, len(nb_files)))
