@@ -650,18 +650,19 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
     node_backups = storage.list_node_backups()
     # Parse its manifest
     backups_manifest = json.loads(node_backups.manifest)
-    nb_files = 0
+    nb_files = {}
     for manifest in backups_manifest:
         for section in manifest:
             if (
-                section["keyspace"] == keyspace_name
+                section["keyspace"] == keyspace
                 and section["columnfamily"][: len(table_name)] == table_name
             ):
-                nb_files+=1
+                for objects in section["objects"]:
+                    nb_files{objects["path"]} = 0
 
-    if sb_files != nb_files:
-        logging.error("{} Objects found on remote storage and {} files found on backups manifest".format(sb_files,nb_files))
-        assert sb_files == nb_files
+    if sb_files != len(nb_files):
+        logging.error("{} Objects found on remote storage and {} files found on backups manifest".format(sb_files,len(nb_files)))
+        assert sb_files == len(nb_files)
 
 @then('I can see the backup status for "{backup_name}" when I run the status command')
 def _i_can_see_backup_status_when_i_run_the_status_command(context, backup_name):
