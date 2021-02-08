@@ -638,7 +638,7 @@ def _i_cannot_see_the_backup_named_backupname_when_i_list_the_backups(
     assert found is False
 
 
-@then('I cannot see purged backup files for the "{table_name}" table in keyspace "{keyspace}')
+@then('I cannot see purged backup files for the "{table_name}" table in keyspace "{keyspace}"')
 def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspacename(
     context, table_name, keyspace
 ):
