@@ -646,13 +646,14 @@ def _i_cannot_see_purged_backup_files_for_the_tablename_table_in_keyspace_keyspa
     path = os.path.join(
         storage.prefix_path + context.medusa_config.storage.fqdn, "data", keyspace, table_name
     )
+    # Get objects from data directory
     sb_files = len(storage.storage_driver.list_objects(path))
-
     node_backups = storage.list_node_backups()
-    # Parse its manifest
     nb_list = list(node_backups)
+    # Containts the path to the ojects got from the backups manifest
     nb_files = {}
     for nb in nb_list:
+        # Parse its manifest
         manifest = json.loads(nb.manifest)
         for section in manifest:
             if (
